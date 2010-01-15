@@ -43,7 +43,7 @@ class CollectaWidget extends WP_Widget
           $title = join(', ',$terms);
         }
     }
-    echo '<iframe style="border:none;width:100%; height:450px;" src="http://widget.collecta.com/widget.html?query='.$term.'&alias='.$title.'" id="widgetframe"></iframe>';
+    echo '<iframe style="border:none;width:100%; height:450px;" src="http://widget.collecta.com/widget.html?notitle=true&query='.$term.'&alias='.$title.'" id="widgetframe"></iframe>';
 
 # After the widget
     echo $after_widget;
