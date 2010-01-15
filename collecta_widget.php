@@ -67,11 +67,12 @@ class CollectaWidget extends WP_Widget
     $title = htmlspecialchars($instance['title']);
     $term = htmlspecialchars($instance['term']);
     $use_tags = $instance['use_tags'];
+    $checked = checked( $use_tags, true );
 
 
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('title') . '">' . __('Title:') . ' <input style="width: 250px;" id="' . $this->get_field_id('title') . '" name="' . $this->get_field_name('title') . '" type="text" value="' . $title . '" /></label></p>';
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('term') . '">' . __('Search Term:') . ' <input style="width: 200px;" id="' . $this->get_field_id('term') . '" name="' . $this->get_field_name('term') . '" type="text" value="' . $term . '" /></label></p>';
-    echo '<p style="text-align:right;margin-right:40px;"><label for="' . $this->get_field_name('use_tags') . '">' .__('Use post tags in single posts view?') . ' <input class="checkbox" type="checkbox"'; checked( $use_tags, true ); echo ' id="'. $this->get_field_name('use_tags') .'" name="'. $this->get_field_name('use_tags'). '" /></label></p>';
+    echo '<p style="text-align:right;margin-right:40px;"><label for="' . $this->get_field_name('use_tags') . '">' .__('Use post tags in single posts view?') . ' <input class="checkbox" type="checkbox"'.$checked.' id="'. $this->get_field_name('use_tags') .'" name="'. $this->get_field_name('use_tags'). '" /></label></p>';
 
   }
 
