@@ -35,11 +35,13 @@ class CollectaWidget extends WP_Widget
       //$title = $term;
       $posttags = get_the_tags();
       $terms = array();
-      foreach($posttags as $tag) {
-        $terms[] = $tag->name;
-      }
-      $term = join(' OR ',$terms);
-      $title = join(', ',$terms);
+      if count($posttags) > 0 {
+          foreach($posttags as $tag) {
+            $terms[] = $tag->name;
+          }
+          $term = join(' OR ',$terms);
+          $title = join(', ',$terms);
+        }
     }
     echo '<iframe style="border:none;width:100%; height:450px;" src="http://widget.collecta.com/widget.html?query='.$term.'&alias='.$title.'" id="widgetframe"></iframe>';
 
