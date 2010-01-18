@@ -5,7 +5,7 @@
    * Plugin URI: http://widget.collecta.com/wp
    * Description: Collecta.com Real-time widget.
    * Author: Matthew Gregg
-   * Author URI: http://braintube.com/
+   * Author URI: http://collecta.com/
    */
 class CollectaWidget extends WP_Widget
 {
