@@ -19,10 +19,10 @@ class CollectaWidget extends WP_Widget
   function widget($args, $instance){
     extract($args);
     $title = apply_filters('widget_title', empty($instance['title']) ? '&nbsp;' : $instance['title']);
-    $term = empty($instance['term']) ? 'title' : $instance['term'];
-    $css = empty($instance['css']) ? '' : '&stylesheet='.$instance['css'];
-    $background = empty($instance['background']) ? '' : '&headerimg='.$instance['background'];
-    $rate = empty($instance['rate']) ? '' : '&delay='.$instance['rate'];
+    $term = empty($instance['term']) ? 'title' : esc_attr($instance['term']);
+    $css = empty($instance['css']) ? '' : '&stylesheet='.esc_attr($instance['css']);
+    $background = empty($instance['background']) ? '' : '&headerimg='.esc_attr($instance['background']);
+    $rate = empty($instance['rate']) ? '' : '&delay='.esc_attr($instance['rate']);
     $show_logo = isset($instance['show_logo']) ? $instance['show_logo'] : true;
     $use_tags = isset($instance['use_tags']) ? $instance['use_tags'] : true;
 
