@@ -1,7 +1,7 @@
 <?php
   /*
    * Plugin Name: Collecta Search Widget
-   * Version: 0.1
+   * Version: 0.2
    * Plugin URI: http://widget.collecta.com/
    * Description: Collecta.com Real-time widget.
    * Author: Matthew Gregg, Mick Thompson
@@ -24,7 +24,7 @@ class CollectaWidget extends WP_Widget
     $background = empty($instance['background']) ? '' : '&headerimg='.urlencode($instance['background']);
     $rate = empty($instance['rate']) ? '' : '&delay='.urlencode($instance['rate']);
     $height = empty($instance['height']) ? '' : urlencode($instance['height']);
-    $width = empty($instance['width']) ? '' : urlencode($instance['width']);
+    $width = empty($instance['width']) ? '' : esc_attr($instance['width']);
     $show_logo = isset($instance['show_logo']) ? $instance['show_logo'] : true;
     $use_tags = isset($instance['use_tags']) ? $instance['use_tags'] : true;
 
@@ -43,14 +43,13 @@ class CollectaWidget extends WP_Widget
             $terms[] = $tag->name;
           }
           $term = join(' OR ',$terms);
-          $title = join(', ',$terms);
         }
     }
     $nologo = 'true';
     if ($show_logo == 'on') {
       $nologo = '';
     }
-    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?notitle=true&query='.$term.'&width='.$width.'&height='.$height.'&alias='.$title.'&nologo='.$nologo.$css.$rate.$background.'" id="widgetframe"></iframe>';
+    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.'&alias=&nologo='.$nologo.$css.$rate.$background.'" id="widgetframe"></iframe>';
 
 # After the widget
     echo $after_widget;
