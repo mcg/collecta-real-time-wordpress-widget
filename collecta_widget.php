@@ -1,7 +1,7 @@
 <?php
   /*
    * Plugin Name: Collecta Search Widget
-   * Version: 0.4
+   * Version: 0.5
    * Plugin URI: http://widget.collecta.com/
    * Description: Collecta.com Real-time widget.
    * Author: Matthew Gregg, Mick Thompson
@@ -49,7 +49,7 @@ class CollectaWidget extends WP_Widget
     if ($show_logo == 'on') {
       $nologo = '';
     }
-    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.'&alias=&nologo='.$nologo.$css.$rate.$background.'" id="widgetframe"></iframe>';
+    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.'&alias=&nologo='.$nologo.$css.$rate.$background.'" id="widgetframe" frameborder="0" scrolling="no"></iframe>';
 
 # After the widget
     echo $after_widget;
