@@ -1,7 +1,7 @@
 <?php
   /*
    * Plugin Name: Collecta Search Widget
-   * Version: 0.5
+   * Version: 0.6
    * Plugin URI: http://widget.collecta.com/
    * Description: Collecta.com Real-time widget.
    * Author: Matthew Gregg, Mick Thompson
@@ -38,7 +38,7 @@ class CollectaWidget extends WP_Widget
     if ( is_single() and $use_tags ) {
       $posttags = get_the_tags();
       $terms = array();
-      if (count($posttags) > 0) {
+      if ($posttags) {
           foreach($posttags as $tag) {
             $terms[] = $tag->name;
           }
