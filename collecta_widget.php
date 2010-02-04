@@ -38,7 +38,7 @@ class CollectaWidget extends WP_Widget
     if ( is_single() and $use_tags ) {
       $posttags = get_the_tags();
       $terms = array();
-      if (count($posttags) > 0) {
+      if ($posttags) {
           foreach($posttags as $tag) {
             $terms[] = $tag->name;
           }
