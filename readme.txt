@@ -4,7 +4,7 @@ Donate link:
 Tags: widget, search
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 0.6
+Stable tag: 0.8
 
 Wordpress widget for the Collecta Real-time search engine.
 
@@ -13,3 +13,8 @@ Wordpress widget for the Collecta Real-time search engine.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Move the widget into your themes sidebar 
 1. Customize the search terms for the widget.
+
+== Changelog ==
+
+= 0.8 =
+ * Fixed typo on scroll rate text.
