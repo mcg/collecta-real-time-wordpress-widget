@@ -1,7 +1,7 @@
 <?php
   /*
    * Plugin Name: Collecta Search Widget
-   * Version: 0.8
+   * Version: 0.9
    * Plugin URI: http://widget.collecta.com/
    * Description: Collecta.com Real-time widget.
    * Author: Matthew Gregg, Mick Thompson
@@ -25,6 +25,7 @@ class CollectaWidget extends WP_Widget
     $rate = empty($instance['rate']) ? '' : '&delay='.urlencode($instance['rate']);
     $height = empty($instance['height']) ? '' : urlencode($instance['height']);
     $width = empty($instance['width']) ? '' : esc_attr($instance['width']);
+    $language = empty($instance['language']) ? '' : '+language:'.urlencode($instance['language']);
     $show_logo = isset($instance['show_logo']) ? $instance['show_logo'] : true;
     $use_tags = isset($instance['use_tags']) ? $instance['use_tags'] : true;
 
@@ -49,7 +50,7 @@ class CollectaWidget extends WP_Widget
     if ($show_logo == 'on') {
       $nologo = '';
     }
-    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.'&alias=&nologo='.$nologo.$css.$rate.$background.'" id="widgetframe" frameborder="0" scrolling="no"></iframe>';
+    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.$language.'&alias=&nologo='.$nologo.$css.$rate.$background.'" id="widgetframe" frameborder="0" scrolling="no"></iframe>';
 
 # After the widget
     echo $after_widget;
@@ -65,6 +66,7 @@ class CollectaWidget extends WP_Widget
     $instance['rate'] = strip_tags(stripslashes($new_instance['rate']));
     $instance['width'] = strip_tags(stripslashes($new_instance['width']));
     $instance['height'] = strip_tags(stripslashes($new_instance['height']));
+    $instance['language'] = strip_tags(stripslashes($new_instance['language']));
     $instance['show_logo'] = strip_tags(stripslashes($new_instance['show_logo']));
     $instance['use_tags'] = strip_tags(stripslashes($new_instance['use_tags']));
 
@@ -81,6 +83,7 @@ class CollectaWidget extends WP_Widget
                                                         'width'=>'200px', 
                                                         'height'=>'450px', 
                                                         'rate'=>'', 
+                                                        'language'=>'', 
                                                         'show_logo'=>true, 
                                                         'use_tags'=>false) );
 
@@ -91,6 +94,7 @@ class CollectaWidget extends WP_Widget
     $rate = htmlspecialchars($instance['rate']);
     $width = htmlspecialchars($instance['width']);
     $height = htmlspecialchars($instance['height']);
+    $language = htmlspecialchars($instance['language']);
     $show_logo = $instance['show_logo'];
     $use_tags = $instance['use_tags'];
 
@@ -98,6 +102,44 @@ class CollectaWidget extends WP_Widget
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('title') . '">' . __('Title:') . ' <input style="width: 250px;" id="' . $this->get_field_id('title') . '" name="' . $this->get_field_name('title') . '" type="text" value="' . $title . '" /></label></p>';
 
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('term') . '">' . __('Search Term:') . ' <input style="width: 200px;" id="' . $this->get_field_id('term') . '" name="' . $this->get_field_name('term') . '" type="text" value="' . $term . '" /></label></p>';
+    echo '<p style="text-align:right;"><label for="' . $this->get_field_name('language') . '">' .  __('Language:') . ' <select id="' . $this->get_field_id( 'language' ) . '" name="' . $this->get_field_name('language') . '">';
+    echo '<option value=""'; selected('',$language); echo '>--ALL--</option>';
+    echo '<option value="ar"'; selected('ar',$language); echo '>Arabic</option>';
+    echo '<option value="bg"'; selected('bg',$language); echo '>Bulgarian</option>';
+    echo '<option value="zh"'; selected('zh',$language); echo '>Chinese</option>';
+    echo '<option value="hr"'; selected('hr',$language); echo '>Croatian</option>';
+    echo '<option value="cs"'; selected('cs',$language); echo '>Czech</option>';
+    echo '<option value="da"'; selected('da',$language); echo '>Danish</option>';
+    echo '<option value="nl"'; selected('nl',$language); echo '>Dutch</option>';
+    echo '<option value="en"'; selected('en',$language); echo '>English</option>';
+    echo '<option value="et"'; selected('et',$language); echo '>Estonian</option>';
+    echo '<option value="fa"'; selected('fa',$language); echo '>Farsi</option>';
+    echo '<option value="fi"'; selected('fi',$language); echo '>Finnish</option>';
+    echo '<option value="fr"'; selected('fr',$language); echo '>French</option>';
+    echo '<option value="fy"'; selected('fy',$language); echo '>Frisian</option>';
+    echo '<option value="de"'; selected('de',$language); echo '>German</option>';
+    echo '<option value="el"'; selected('el',$language); echo '>Greek</option>';
+    echo '<option value="he"'; selected('he',$language); echo '>Hebrew</option>';
+    echo '<option value="hi"'; selected('hi',$language); echo '>Hindi</option>';
+    echo '<option value="hu"'; selected('hu',$language); echo '>Hungarian</option>';
+    echo '<option value="is"'; selected('is',$language); echo '>Icelandic</option>';
+    echo '<option value="io"'; selected('io',$language); echo '>Ido</option>';
+    echo '<option value="ga"'; selected('ga',$language); echo '>Irish</option>';
+    echo '<option value="it"'; selected('it',$language); echo '>Italian</option>';
+    echo '<option value="ja"'; selected('ja',$language); echo '>Japanese</option>';
+    echo '<option value="ko"'; selected('ko',$language); echo '>Korean</option>';
+    echo '<option value="no"'; selected('no',$language); echo '>Norwegian</option>';
+    echo '<option value="pl"'; selected('pl',$language); echo '>Polish</option>';
+    echo '<option value="pt"'; selected('pt',$language); echo '>Portuguese</option>';
+    echo '<option value="ro"'; selected('ro',$language); echo '>Romanian</option>';
+    echo '<option value="ru"'; selected('ru',$language); echo '>Russian</option>';
+    echo '<option value="sl"'; selected('sl',$language); echo '>Slovenian</option>';
+    echo '<option value="es"'; selected('es',$language); echo '>Spanish</option>';
+    echo '<option value="sv"'; selected('sv',$language); echo '>Swedish</option>';
+    echo '<option value="th"'; selected('th',$language); echo '>Thai</option>';
+    echo '<option value="uk"'; selected('uk',$language); echo '>Ukraninan</option>';
+    echo '<option value="vi"'; selected('vi',$language); echo '>Vietnamese</option>';
+    echo '</select><label></p>';
 
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('background') . '">' . __('Header Background URL:') . ' <input style="width: 200px;" id="' . $this->get_field_id('background') . '" name="' . $this->get_field_name('background') . '" type="text" value="' . $background . '" /></label></p>';
 
