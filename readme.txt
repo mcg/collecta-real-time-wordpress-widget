@@ -4,7 +4,7 @@ Donate link:
 Tags: widget, search
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 0.8
+Stable tag: 0.9
 
 Wordpress widget for the Collecta Real-time search engine.
 
@@ -15,6 +15,9 @@ Wordpress widget for the Collecta Real-time search engine.
 1. Customize the search terms for the widget.
 
 == Changelog ==
+
+= 0.9 =
+ * New feature: filter search results by language.
 
 = 0.8 =
  * Fixed typo on scroll rate text.
