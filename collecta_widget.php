@@ -24,6 +24,7 @@ class CollectaWidget extends WP_Widget
     $js_filter = empty($instance['js_filter']) ? '' : '&filter='.urlencode($instance['js_filter']);
     $background = empty($instance['background']) ? '' : '&headerimg='.urlencode($instance['background']);
     $rate = empty($instance['rate']) ? '' : '&delay='.urlencode($instance['rate']);
+    $archive = isset($instance['archive']) ? $instance['archive'] : true;
     $height = empty($instance['height']) ? '' : urlencode($instance['height']);
     $width = empty($instance['width']) ? '' : esc_attr($instance['width']);
     $language = empty($instance['language']) ? '' : '+language:'.urlencode($instance['language']);
@@ -51,7 +52,7 @@ class CollectaWidget extends WP_Widget
     if ($show_logo == 'on') {
       $nologo = '';
     }
-    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.$language.'&alias=&nologo='.$nologo.$css.$rate.$background.$js_filter.'" id="widgetframe" frameborder="0" scrolling="no"></iframe>';
+    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.$language.'&alias=&nologo='.$nologo.$css.$rate.$background.$js_filter.$archive.'" id="widgetframe" frameborder="0" scrolling="no"></iframe>';
 
 # After the widget
     echo $after_widget;
@@ -66,6 +67,7 @@ class CollectaWidget extends WP_Widget
     $instance['css'] = strip_tags(stripslashes($new_instance['css']));
     $instance['js_filter'] = strip_tags(stripslashes($new_instance['js_filter']));
     $instance['rate'] = strip_tags(stripslashes($new_instance['rate']));
+    $instance['archive'] = strip_tags(stripslashes($new_instance['archive']));
     $instance['width'] = strip_tags(stripslashes($new_instance['width']));
     $instance['height'] = strip_tags(stripslashes($new_instance['height']));
     $instance['language'] = strip_tags(stripslashes($new_instance['language']));
@@ -88,6 +90,7 @@ class CollectaWidget extends WP_Widget
                                                         'rate'=>'', 
                                                         'language'=>'', 
                                                         'show_logo'=>true, 
+                                                        'archive'=>false, 
                                                         'use_tags'=>false) );
 
     $title = htmlspecialchars($instance['title']);
@@ -100,6 +103,7 @@ class CollectaWidget extends WP_Widget
     $height = htmlspecialchars($instance['height']);
     $language = htmlspecialchars($instance['language']);
     $show_logo = $instance['show_logo'];
+    $archive = $instance['archive'];
     $use_tags = $instance['use_tags'];
 
 
@@ -150,9 +154,11 @@ class CollectaWidget extends WP_Widget
 
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('css') . '">' . __('URL for External Stylesheet:') . ' <input style="width: 200px;" id="' . $this->get_field_id('css') . '" name="' . $this->get_field_name('css') . '" type="text" value="' . $css . '" /></label></p>';
 
-  echo '<p style="text-align:right;"><label for="' . $this->get_field_name('js_filter') . '">' . __('URL for External Javascript Filter(if set to "true", no quotes, enables PG-13 profanity filter):') . ' <input style="width: 200px;" id="' . $this->get_field_id('js_filter') . '" name="' . $this->get_field_name('js_filter') . '" type="text" value="' . $js_filter . '" /></label></p>';
+    echo '<p style="text-align:right;"><label for="' . $this->get_field_name('js_filter') . '">' . __('URL for External Javascript Filter(if set to "true", no quotes, enables PG-13 profanity filter):') . ' <input style="width: 200px;" id="' . $this->get_field_id('js_filter') . '" name="' . $this->get_field_name('js_filter') . '" type="text" value="' . $js_filter . '" /></label></p>';
 
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('rate') . '">' . __('Scroll Rate(secs delay between new items):') . ' <input style="width: 50px;" id="' . $this->get_field_id('rate') . '" name="' . $this->get_field_name('rate') . '" type="text" value="' . $rate . '" /></label></p>';
+
+    echo '<p style="text-align:right;margin-right:40px;"><label for="' . $this->get_field_name('archive') . '">' .__('Use archive?') . ' <input class="checkbox" type="checkbox"'; checked( $archive, 'on' ); echo ' id="'. $this->get_field_name('archive') .'" name="'. $this->get_field_name('archive'). '" /></label></p>';
 
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('width') . '">' . __('Width:') . ' <input style="width: 50px;" id="' . $this->get_field_id('width') . '" name="' . $this->get_field_name('width') . '" type="text" value="' . $width . '" /></label></p>';
 
