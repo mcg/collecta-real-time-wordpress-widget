@@ -52,7 +52,7 @@ class CollectaWidget extends WP_Widget
     if ($show_logo == 'on') {
       $nologo = '';
     }
-    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.$language.'&alias=&nologo='.$nologo.$css.$rate.$background.$js_filter.$archive.'" id="widgetframe" frameborder="0" scrolling="no"></iframe>';
+    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.$language.'&alias=&nologo='.$nologo.$css.$rate.$background.$js_filter.'&archive='.$archive.'" id="widgetframe" frameborder="0" scrolling="no"></iframe>';
 
 # After the widget
     echo $after_widget;
