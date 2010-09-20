@@ -1,7 +1,7 @@
 <?php
   /*
    * Plugin Name: Collecta Search Widget
-   * Version: 1.3
+   * Version: 1.4
    * Plugin URI: http://widget.collecta.com/
    * Description: Collecta.com Real-time widget.
    * Author: Matthew Gregg, Mick Thompson
