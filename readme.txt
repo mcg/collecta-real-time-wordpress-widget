@@ -4,7 +4,7 @@ Donate link:
 Tags: widget, search
 Requires at least: 2.8
 Tested up to: 3.0.1
-Stable tag: 1.0
+Stable tag: 1.1
 
 Wordpress widget for the Collecta Real-time search engine.
 
@@ -16,7 +16,7 @@ Wordpress widget for the Collecta Real-time search engine.
 
 == Changelog ==
 
-= 1.0 =
+= 1.1 =
  * New feature: Javascript filter options.
 
 = 0.9 =
