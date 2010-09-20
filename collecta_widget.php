@@ -1,7 +1,7 @@
 <?php
   /*
    * Plugin Name: Collecta Search Widget
-   * Version: 0.9
+   * Version: 1.0
    * Plugin URI: http://widget.collecta.com/
    * Description: Collecta.com Real-time widget.
    * Author: Matthew Gregg, Mick Thompson
@@ -21,6 +21,7 @@ class CollectaWidget extends WP_Widget
     $title = apply_filters('widget_title', empty($instance['title']) ? '&nbsp;' : esc_attr($instance['title']));
     $term = empty($instance['term']) ? 'title' : urlencode($instance['term']);
     $css = empty($instance['css']) ? '' : '&stylesheet='.urlencode($instance['css']);
+    $css = empty($instance['js_filter']) ? '' : '&filter='.urlencode($instance['js_filter']);
     $background = empty($instance['background']) ? '' : '&headerimg='.urlencode($instance['background']);
     $rate = empty($instance['rate']) ? '' : '&delay='.urlencode($instance['rate']);
     $height = empty($instance['height']) ? '' : urlencode($instance['height']);
@@ -50,7 +51,7 @@ class CollectaWidget extends WP_Widget
     if ($show_logo == 'on') {
       $nologo = '';
     }
-    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.$language.'&alias=&nologo='.$nologo.$css.$rate.$background.'" id="widgetframe" frameborder="0" scrolling="no"></iframe>';
+    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.$language.'&alias=&nologo='.$nologo.$css.$rate.$background.$filter'" id="widgetframe" frameborder="0" scrolling="no"></iframe>';
 
 # After the widget
     echo $after_widget;
@@ -63,6 +64,7 @@ class CollectaWidget extends WP_Widget
     $instance['term'] = strip_tags(stripslashes($new_instance['term']));
     $instance['background'] = strip_tags(stripslashes($new_instance['background']));
     $instance['css'] = strip_tags(stripslashes($new_instance['css']));
+    $instance['js_filter'] = strip_tags(stripslashes($new_instance['js_filter']));
     $instance['rate'] = strip_tags(stripslashes($new_instance['rate']));
     $instance['width'] = strip_tags(stripslashes($new_instance['width']));
     $instance['height'] = strip_tags(stripslashes($new_instance['height']));
@@ -80,6 +82,7 @@ class CollectaWidget extends WP_Widget
                                                         'term'=>'', 
                                                         'background'=>'', 
                                                         'css'=>'', 
+                                                        'js_filter'=>'', 
                                                         'width'=>'200px', 
                                                         'height'=>'450px', 
                                                         'rate'=>'', 
@@ -90,6 +93,7 @@ class CollectaWidget extends WP_Widget
     $title = htmlspecialchars($instance['title']);
     $term = htmlspecialchars($instance['term']);
     $css = htmlspecialchars($instance['css']);
+    $css = htmlspecialchars($instance['js_filter']);
     $background = htmlspecialchars($instance['background']);
     $rate = htmlspecialchars($instance['rate']);
     $width = htmlspecialchars($instance['width']);
@@ -145,7 +149,9 @@ class CollectaWidget extends WP_Widget
 
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('css') . '">' . __('URL for External Stylesheet:') . ' <input style="width: 200px;" id="' . $this->get_field_id('css') . '" name="' . $this->get_field_name('css') . '" type="text" value="' . $css . '" /></label></p>';
 
-    echo '<p style="text-align:right;"><label for="' . $this->get_field_name('rate') . '">' . __('Scroll Rate(secs delay between new items):') . ' <input style="width: 200px;" id="' . $this->get_field_id('rate') . '" name="' . $this->get_field_name('rate') . '" type="text" value="' . $rate . '" /></label></p>';
+  echo '<p style="text-align:right;"><label for="' . $this->get_field_name('js_filter') . '">' . __('URL for External Javascript Filtert:') . ' <input style="width: 200px;" id="' . $this->get_field_id('js_filter') . '" name="' . $this->get_field_name('js_filter') . '" type="text" value="' . $js_filter . '" /></label></p>';
+
+    echo '<p style="text-align:right;"><label for="' . $this->get_field_name('rate') . '">' . __('Scroll Rate(secs delay between new items):') . ' <input style="width: 50px;" id="' . $this->get_field_id('rate') . '" name="' . $this->get_field_name('rate') . '" type="text" value="' . $rate . '" /></label></p>';
 
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('width') . '">' . __('Width:') . ' <input style="width: 50px;" id="' . $this->get_field_id('width') . '" name="' . $this->get_field_name('width') . '" type="text" value="' . $width . '" /></label></p>';
 
