@@ -21,7 +21,7 @@ class CollectaWidget extends WP_Widget
     $title = apply_filters('widget_title', empty($instance['title']) ? '&nbsp;' : esc_attr($instance['title']));
     $term = empty($instance['term']) ? 'title' : urlencode($instance['term']);
     $css = empty($instance['css']) ? '' : '&stylesheet='.urlencode($instance['css']);
-    $css = empty($instance['js_filter']) ? '' : '&filter='.urlencode($instance['js_filter']);
+    $js_filter = empty($instance['js_filter']) ? '' : '&filter='.urlencode($instance['js_filter']);
     $background = empty($instance['background']) ? '' : '&headerimg='.urlencode($instance['background']);
     $rate = empty($instance['rate']) ? '' : '&delay='.urlencode($instance['rate']);
     $height = empty($instance['height']) ? '' : urlencode($instance['height']);
@@ -51,7 +51,7 @@ class CollectaWidget extends WP_Widget
     if ($show_logo == 'on') {
       $nologo = '';
     }
-    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.$language.'&alias=&nologo='.$nologo.$css.$rate.$background.$filter'" id="widgetframe" frameborder="0" scrolling="no"></iframe>';
+    echo '<iframe style="border:none;width:'.$width.'; height:'.$height.';" src="http://widget.collecta.com/widget.html?&query='.$term.$language.'&alias=&nologo='.$nologo.$css.$rate.$background.$js_filter.'" id="widgetframe" frameborder="0" scrolling="no"></iframe>';
 
 # After the widget
     echo $after_widget;
@@ -93,7 +93,7 @@ class CollectaWidget extends WP_Widget
     $title = htmlspecialchars($instance['title']);
     $term = htmlspecialchars($instance['term']);
     $css = htmlspecialchars($instance['css']);
-    $css = htmlspecialchars($instance['js_filter']);
+    $js_filter = htmlspecialchars($instance['js_filter']);
     $background = htmlspecialchars($instance['background']);
     $rate = htmlspecialchars($instance['rate']);
     $width = htmlspecialchars($instance['width']);
@@ -106,6 +106,7 @@ class CollectaWidget extends WP_Widget
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('title') . '">' . __('Title:') . ' <input style="width: 250px;" id="' . $this->get_field_id('title') . '" name="' . $this->get_field_name('title') . '" type="text" value="' . $title . '" /></label></p>';
 
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('term') . '">' . __('Search Term:') . ' <input style="width: 200px;" id="' . $this->get_field_id('term') . '" name="' . $this->get_field_name('term') . '" type="text" value="' . $term . '" /></label></p>';
+
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('language') . '">' .  __('Language:') . ' <select id="' . $this->get_field_id( 'language' ) . '" name="' . $this->get_field_name('language') . '">';
     echo '<option value=""'; selected('',$language); echo '>--ALL--</option>';
     echo '<option value="ar"'; selected('ar',$language); echo '>Arabic</option>';
@@ -149,7 +150,7 @@ class CollectaWidget extends WP_Widget
 
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('css') . '">' . __('URL for External Stylesheet:') . ' <input style="width: 200px;" id="' . $this->get_field_id('css') . '" name="' . $this->get_field_name('css') . '" type="text" value="' . $css . '" /></label></p>';
 
-  echo '<p style="text-align:right;"><label for="' . $this->get_field_name('js_filter') . '">' . __('URL for External Javascript Filtert:') . ' <input style="width: 200px;" id="' . $this->get_field_id('js_filter') . '" name="' . $this->get_field_name('js_filter') . '" type="text" value="' . $js_filter . '" /></label></p>';
+  echo '<p style="text-align:right;"><label for="' . $this->get_field_name('js_filter') . '">' . __('URL for External Javascript Filter(if set to "true", no quotes, enables PG-13 profanity filter):') . ' <input style="width: 200px;" id="' . $this->get_field_id('js_filter') . '" name="' . $this->get_field_name('js_filter') . '" type="text" value="' . $js_filter . '" /></label></p>';
 
     echo '<p style="text-align:right;"><label for="' . $this->get_field_name('rate') . '">' . __('Scroll Rate(secs delay between new items):') . ' <input style="width: 50px;" id="' . $this->get_field_id('rate') . '" name="' . $this->get_field_name('rate') . '" type="text" value="' . $rate . '" /></label></p>';
 
